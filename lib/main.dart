@@ -1,7 +1,7 @@
 import 'package:flame/flame.dart';
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
-import 'package:george_game/button_controller.dart';
+import 'package:george_game/widget/button_controller.dart';
 import 'my_game.dart';
 
 void main() async{

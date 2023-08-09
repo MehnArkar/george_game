@@ -1,7 +1,7 @@
 import 'package:flame/game.dart';
 import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
-import 'my_game.dart';
+import '../my_game.dart';
 
 class ButtonController extends StatefulWidget {
   final MyGeorgeGame game;
@@ -12,6 +12,7 @@ class ButtonController extends StatefulWidget {
 }
 
 class _ButtonControllerState extends State<ButtonController> {
+  bool isAudioPlaying= true;
   int cake = 0;
 
   @override
@@ -48,22 +49,16 @@ class _ButtonControllerState extends State<ButtonController> {
               ),
                     child: IconButton(
                         onPressed: (){
-                          FlameAudio.bgm.play('audio.mp3');
+                          if(isAudioPlaying){
+                            FlameAudio.bgm.stop();
+                          }else {
+                            FlameAudio.bgm.play('audio.mp3');
+                          }
+                          setState(() {
+                            isAudioPlaying = !isAudioPlaying;
+                          });
                         },
-                        icon: const Icon(Icons.volume_up,size: 25,color: Colors.pink,)
-                    ),
-                  ),
-                  const SizedBox(width: 25,),
-                  Container(
-                      decoration:BoxDecoration(
-                          color:Colors.white.withOpacity(0.5),
-                          shape: BoxShape.circle,
-                      ),
-                    child: IconButton(
-                        onPressed: (){
-                          FlameAudio.bgm.stop();
-                        },
-                        icon: const Icon(Icons.volume_off,size: 25,color: Colors.pink,)
+                        icon:  Icon(isAudioPlaying?Icons.volume_off: Icons.volume_up,size: 25,color: Colors.pink,)
                     ),
                   ),
                   const Spacer(),

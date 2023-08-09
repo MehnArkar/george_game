@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flame/components.dart';
 import 'package:flame/events.dart';
 import 'package:flame/game.dart';
@@ -20,6 +18,8 @@ class MyGeorgeGame extends FlameGame with TapDetector, HasCollisionDetection{
 
   double mapHeight = 0;
   double mapWidth =0;
+  
+  late AudioPool collectAudio;
 
   @override
   Future<void> onLoad() async{
@@ -56,7 +56,11 @@ class MyGeorgeGame extends FlameGame with TapDetector, HasCollisionDetection{
     //Audio Section
     FlameAudio.bgm.initialize();
     FlameAudio.audioCache.load('audio.mp3');
+    FlameAudio.bgm.play('audio.mp3');
     add(george);
+    
+    collectAudio = await AudioPool.create(source: AssetSource('audio/collect_audio.mp3'), maxPlayers: 1);
+    
 
 
     camera.followComponent(george,worldBounds:Rect.fromLTRB(0, 0, mapWidth, mapHeight));
