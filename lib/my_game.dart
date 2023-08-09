@@ -4,7 +4,7 @@ import 'package:flame/game.dart';
 import 'package:flame_audio/flame_audio.dart';
 import 'package:flame_tiled/flame_tiled.dart';
 import 'package:flutter/material.dart';
-
+import 'package:george_game/dialog/dialog_box.dart';
 import 'components/friend_component.dart';
 import 'components/george_component.dart';
 import 'loader/add_baked_good.dart';
@@ -15,6 +15,7 @@ class MyGeorgeGame extends FlameGame with TapDetector, HasCollisionDetection{
 
   GeorgeComponent george = GeorgeComponent();
   late SpriteComponent background;
+  late DialogBox dialog;
 
   double mapHeight = 0;
   double mapWidth =0;
@@ -29,6 +30,9 @@ class MyGeorgeGame extends FlameGame with TapDetector, HasCollisionDetection{
     add(homeMap);
     mapWidth=homeMap.tileMap.map.width*16;
     mapHeight=homeMap.tileMap.map.height*16;
+
+    dialog = DialogBox(text: 'Hello! I\'m george. I\'m 12 years old.', game: this);
+
 
     addBakedGood(homeMap, this);
 
@@ -53,11 +57,15 @@ class MyGeorgeGame extends FlameGame with TapDetector, HasCollisionDetection{
     overlays.add('button_controller');
 
 
+
     //Audio Section
     FlameAudio.bgm.initialize();
     FlameAudio.audioCache.load('audio.mp3');
-    FlameAudio.bgm.play('audio.mp3');
+
+
     add(george);
+
+    add(dialog);
     
     collectAudio = await AudioPool.create(source: AssetSource('audio/collect_audio.mp3'), maxPlayers: 1);
     

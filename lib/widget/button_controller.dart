@@ -3,16 +3,16 @@ import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
 import '../my_game.dart';
 
-class ButtonController extends StatefulWidget {
+class GameOverlayWidget extends StatefulWidget {
   final MyGeorgeGame game;
-  const ButtonController({super.key,required this.game});
+  const GameOverlayWidget({super.key,required this.game});
 
   @override
-  State<ButtonController> createState() => _ButtonControllerState();
+  State<GameOverlayWidget> createState() => _GameOverlayWidgetState();
 }
 
-class _ButtonControllerState extends State<ButtonController> {
-  bool isAudioPlaying= true;
+class _GameOverlayWidgetState extends State<GameOverlayWidget> {
+  bool isAudioPlaying= false;
   int cake = 0;
 
   @override
@@ -58,7 +58,7 @@ class _ButtonControllerState extends State<ButtonController> {
                             isAudioPlaying = !isAudioPlaying;
                           });
                         },
-                        icon:  Icon(isAudioPlaying?Icons.volume_off: Icons.volume_up,size: 25,color: Colors.pink,)
+                        icon:  Icon(!isAudioPlaying?Icons.volume_off: Icons.volume_up,size: 25,color: Colors.pink,)
                     ),
                   ),
                   const Spacer(),
@@ -71,7 +71,7 @@ class _ButtonControllerState extends State<ButtonController> {
                     child:
                     Row(
                         children:[
-                          Image.asset('assets/images/apple_pie.png',width: 50,height: 50,),
+                          Image.asset('assets/images/strawberrycake.png',width: 50,height: 50,),
                           const SizedBox(width: 15,),
                           Text(cake.toString(),style: const TextStyle(fontSize: 25,fontWeight: FontWeight.w700,color: Colors.pink),)
                         ]

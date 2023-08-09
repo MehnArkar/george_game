@@ -15,7 +15,7 @@ void main() async{
           body: GameWidget(
               game: game,
             overlayBuilderMap: {
-                'button_controller':(context,MyGeorgeGame game)=>ButtonController(game: game),
+                'button_controller':(context,MyGeorgeGame game)=>GameOverlayWidget(game: game),
             },
           )
       )
