@@ -85,8 +85,4 @@ class _GameOverlayWidgetState extends State<GameOverlayWidget> {
       ),
     );
   }
-  
-  cakeWidget(){
-    
-  }
 }
